@@ -1,4 +1,5 @@
 from flask import Flask
+from flask import url_for
 
 app = Flask(__name__)  # 实例化Flask类来创建一个程序对象app
 
@@ -13,9 +14,27 @@ app = Flask(__name__)  # 实例化Flask类来创建一个程序对象app
 def hello():
     return '<h1>Hello Totoro!</h1><img src="http://helloflask.com/totoro.gif">'
 
+# 下面这个视图函数会处理所有类似 `/user/<name>`的请求
+# @app.route('/user/<name>')
+# def user_page(name):
+#     return 'User page'
+
+from markupsafe import escape
+@app.route('/user/<name>')
+def user_page(name):
+    return f'User: {escape(name)}'
 
 
-
+@app.route('/test')
+def test_url_for():
+    print(url_for('hello'))
+    
+    print(url_for('user_page', name='allen'))
+    print(url_for('user_page', name='peter'))
+    print(url_for('test_url_for'))  # 输出：/test
+    
+    print(url_for('test_url_for', num=2))
+    return 'Test page'
 
 
 
