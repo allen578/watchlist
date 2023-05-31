@@ -13,7 +13,7 @@ build_time_vars = {'ABIFLAGS': '',
  'BINDIR': '/usr/local/bin',
  'BINLIBDEST': '/usr/local/lib/python3.9',
  'BLDLIBRARY': 'libpython3.9.a',
- 'BLDSHARED': 'gcc -pthread -shared',
+ 'BLDSHARED': 'gcc -pthread -shared -L/usr/local/sqlite3/lib',
  'BUILDEXE': '',
  'BUILDPYTHON': 'python',
  'BUILD_GNU_TYPE': 'x86_64-pc-linux-gnu',
@@ -32,10 +32,11 @@ build_time_vars = {'ABIFLAGS': '',
                             '-Wno-missing-field-initializers '
                             '-Werror=implicit-function-declaration '
                             '-fvisibility=hidden',
- 'CONFIGURE_CPPFLAGS': '',
- 'CONFIGURE_LDFLAGS': '',
+ 'CONFIGURE_CPPFLAGS': '-I /usr/local/sqlite3/include',
+ 'CONFIGURE_LDFLAGS': '-L/usr/local/sqlite3/lib',
  'CONFIGURE_LDFLAGS_NODIST': '',
- 'CONFIG_ARGS': "'--with-ssl'",
+ 'CONFIG_ARGS': "'LDFLAGS=-L/usr/local/sqlite3/lib' 'CPPFLAGS=-I "
+                "/usr/local/sqlite3/include'",
  'CONFINCLUDEDIR': '/usr/local/include',
  'CONFINCLUDEPY': '/usr/local/include/python3.9',
  'COREPYTHONPATH': '',
@@ -43,7 +44,7 @@ build_time_vars = {'ABIFLAGS': '',
  'COVERAGE_REPORT': '/usr/workspace/Python-3.9.13/lcov-report',
  'COVERAGE_REPORT_OPTIONS': '--no-branch-coverage --title "CPython lcov '
                             'report"',
- 'CPPFLAGS': '-I. -I./Include',
+ 'CPPFLAGS': '-I. -I./Include -I /usr/local/sqlite3/include',
  'CXX': 'g++ -pthread',
  'DESTDIRS': '/usr/local /usr/local/lib /usr/local/lib/python3.9 '
              '/usr/local/lib/python3.9/lib-dynload',
@@ -526,11 +527,11 @@ build_time_vars = {'ABIFLAGS': '',
  'IO_H': 'Modules/_io/_iomodule.h',
  'IO_OBJS': '\\',
  'LDCXXSHARED': 'g++ -pthread -shared',
- 'LDFLAGS': '',
+ 'LDFLAGS': '-L/usr/local/sqlite3/lib',
  'LDFLAGS_NODIST': '',
  'LDLIBRARY': 'libpython3.9.a',
  'LDLIBRARYDIR': '',
- 'LDSHARED': 'gcc -pthread -shared',
+ 'LDSHARED': 'gcc -pthread -shared -L/usr/local/sqlite3/lib',
  'LDVERSION': '3.9',
  'LIBC': '',
  'LIBDEST': '/usr/local/lib/python3.9',
@@ -633,7 +634,8 @@ build_time_vars = {'ABIFLAGS': '',
                              '-Wno-missing-field-initializers '
                              '-Werror=implicit-function-declaration '
                              '-fvisibility=hidden  -I./Include/internal -I. '
-                             '-I./Include -DPy_BUILD_CORE_BUILTIN',
+                             '-I./Include -I /usr/local/sqlite3/include '
+                             '-DPy_BUILD_CORE_BUILTIN',
  'PY_CFLAGS': '-Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O3 -Wall',
  'PY_CFLAGS_NODIST': '-std=c99 -Wextra -Wno-unused-result '
                      '-Wno-unused-parameter -Wno-missing-field-initializers '
@@ -644,11 +646,12 @@ build_time_vars = {'ABIFLAGS': '',
                    '-Wall -std=c99 -Wextra -Wno-unused-result '
                    '-Wno-unused-parameter -Wno-missing-field-initializers '
                    '-Werror=implicit-function-declaration -fvisibility=hidden  '
-                   '-I./Include/internal -I. -I./Include -DPy_BUILD_CORE',
- 'PY_CORE_LDFLAGS': '',
- 'PY_CPPFLAGS': '-I. -I./Include',
+                   '-I./Include/internal -I. -I./Include -I '
+                   '/usr/local/sqlite3/include -DPy_BUILD_CORE',
+ 'PY_CORE_LDFLAGS': '-L/usr/local/sqlite3/lib',
+ 'PY_CPPFLAGS': '-I. -I./Include -I /usr/local/sqlite3/include',
  'PY_FORMAT_SIZE_T': '"z"',
- 'PY_LDFLAGS': '',
+ 'PY_LDFLAGS': '-L/usr/local/sqlite3/lib',
  'PY_LDFLAGS_NODIST': '',
  'PY_SSL_DEFAULT_CIPHERS': 1,
  'PY_SSL_DEFAULT_CIPHER_STRING': 0,
@@ -657,7 +660,7 @@ build_time_vars = {'ABIFLAGS': '',
                         '-Wno-unused-parameter -Wno-missing-field-initializers '
                         '-Werror=implicit-function-declaration '
                         '-fvisibility=hidden  -I./Include/internal -I. '
-                        '-I./Include',
+                        '-I./Include -I /usr/local/sqlite3/include',
  'Py_DEBUG': 0,
  'Py_ENABLE_SHARED': 0,
  'Py_HASH_ALGORITHM': 0,

@@ -89,8 +89,8 @@ CONFIGURE_CFLAGS_NODIST= -std=c99 -Wextra -Wno-unused-result -Wno-unused-paramet
 # Use it when a linker flag should _not_ be part of the distutils LDFLAGS
 # once Python is installed (bpo-35257)
 CONFIGURE_LDFLAGS_NODIST=
-CONFIGURE_CPPFLAGS=	
-CONFIGURE_LDFLAGS=	
+CONFIGURE_CPPFLAGS=	-I /usr/local/sqlite3/include
+CONFIGURE_LDFLAGS=	-L/usr/local/sqlite3/lib
 # Avoid assigning CFLAGS, LDFLAGS, etc. so users can use them on the
 # command line to append to these values without stomping the pre-set
 # values.
@@ -213,7 +213,7 @@ EXEMODE=	755
 FILEMODE=	644
 
 # configure script arguments
-CONFIG_ARGS=	 '--with-ssl'
+CONFIG_ARGS=	 'LDFLAGS=-L/usr/local/sqlite3/lib' 'CPPFLAGS=-I /usr/local/sqlite3/include'
 
 
 # Subdirectories with code
