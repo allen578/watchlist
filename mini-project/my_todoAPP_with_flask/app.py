@@ -17,6 +17,10 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False # 关闭对模型修改的�
 app.config['SECRET_KEY'] = 'dev'
 db = SQLAlchemy(app) #初始化扩展，传入程序实例 app
 
+from flask_login import LoginManager
+
+login_manager = LoginManager(app) # 实例化扩展类
+login_manager.login_view = 'login'
 # ...
 
 # 模板上下文处理函数, 避免每次都要输入用户名
@@ -199,10 +203,6 @@ def admin(username, password):
     click.echo('Done.')
     
 # 使用Flask-Login实现用户认证
-from flask_login import LoginManager
-
-login_manager = LoginManager(app) # 实例化扩展类
-login_manager.login_view = 'login'
 
 @login_manager.user_loader
 def load_user(user_id): # 创建用户加载回调函数，接受用户ID作为参数
